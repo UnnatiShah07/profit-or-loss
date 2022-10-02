@@ -28,22 +28,32 @@ function showOutput(message, status) {
     switch (status) {
         case "PROFIT":
             output.innerText = message;
-            output.style = "color: #0ed10e; border: 1px solid #0ed10e; background: #fffffe"
+            output.style =
+                "color: #0ed10e; border: 1px solid #0ed10e; background: #fffffe";
             break;
 
         case "LOSS":
             output.innerText = message;
-            output.style = "color: red; border: 1px solid red; background: #fffffe"
+            output.style =
+                "color: red; border: 1px solid red; background: #fffffe";
             break;
 
         case "NO_GAIN":
             output.innerText = message;
-            output.style = "color: #0f0e17; border: 1px solid #0f0e17; background: #fffffe"
+            output.style =
+                "color: #0f0e17; border: 1px solid #0f0e17; background: #fffffe";
             break;
 
         case "NO_VALUE":
             output.innerText = message;
-            output.style = "color: #0f0e17; border: 1px solid #0f0e17; background: #fffffe"
+            output.style =
+                "color: #0f0e17; border: 1px solid #0f0e17; background: #fffffe";
+            break;
+
+        case "NAGETIVE_VALUE":
+            output.innerText = message;
+            output.style =
+                "color: #0f0e17; border: 1px solid #0f0e17; background: #fffffe";
             break;
 
         default:
@@ -52,13 +62,24 @@ function showOutput(message, status) {
 }
 
 function handleClick() {
-    const init = Number(initPrice.value);
-    const qnt = Number(stockQuantity.value);
-    const current = Number(currentPrice.value);
-    if (init && qnt && current) {
-        calculateProfitAndLoss(init, qnt, current);
+    if (
+        Number(initPrice.value) < 0 ||
+        Number(stockQuantity.value) < 0 ||
+        Number(currentPrice.value)
+    ) {
+        showOutput(
+            "You can enter only positive numbers as input.",
+            "NAGETIVE_VALUE"
+        );
     } else {
-        showOutput("Please enter value in all fileds.", "NO_VALUE");
+        const init = Number(initPrice.value);
+        const qnt = Number(stockQuantity.value);
+        const current = Number(currentPrice.value);
+        if (init && qnt && current) {
+            calculateProfitAndLoss(init, qnt, current);
+        } else {
+            showOutput("Please enter value in all fileds.", "NO_VALUE");
+        }
     }
 }
 
