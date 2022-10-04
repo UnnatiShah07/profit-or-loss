@@ -65,7 +65,7 @@ function handleClick() {
     if (
         Number(initPrice.value) < 0 ||
         Number(stockQuantity.value) < 0 ||
-        Number(currentPrice.value)
+        Number(currentPrice.value) < 0
     ) {
         showOutput(
             "You can enter only positive numbers as input.",
